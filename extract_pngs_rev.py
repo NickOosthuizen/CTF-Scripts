@@ -1,4 +1,5 @@
 import sys
+import os.path
 
 f = open(sys.argv[1], "rb")
 
@@ -33,6 +34,8 @@ for byte in data[::-1]:
         if (start_pos == -1):
             read_mode = False
             start_pos = 7
+            while (os.path.isfile("images/image" + str(num_files) + ".png")):
+                num_files += 1
             f = open("images/image" + str(num_files) + ".png", "wb")
             for info in png_data[::-1]:
                 f.write(info.to_bytes(1, 'big'))
